@@ -3,20 +3,16 @@ import java.util.Scanner;
 
 public class BullyCalculator {
 
-	Scanner keyboard = new Scanner(System.in);
-	double creditsForClass;
-	int courseType;
-	int numberOfClasses;
-	int gradeInClass;
-	double sumCalculation;
-	double totalCredits;
-	double GPA;
+	static Scanner keyboard = new Scanner(System.in);
+	static double creditsForClass;
+	static int courseType;
+	static int numberOfClasses;
+	static int gradeInClass;
+	static double sumCalculation;
+	static double totalCredits;
+	static double GPA;
 	
-	public BullyCalculator() {
-		
-	}
-	
-	public void calculateGPA() {
+	public static void calculateGPA() {
 		System.out.print("How many classes do you take?\n> ");
 		numberOfClasses = keyboard.nextInt();
 		for (int i = 1; i <= numberOfClasses; i++) {
@@ -30,22 +26,18 @@ public class BullyCalculator {
 			System.out.print("Options: \n1. A+ \n2. A \n3. A- \n4. B+ \n5. B \n6. B- \n7. C+ \n8. C \n9. C- \n10. D+ \n11. D \n12. D- \n13. U \n> ");
 			gradeInClass = keyboard.nextInt();
 			if (gradeInClass == 1) {
-				System.out.println("You are average.");
+				System.out.println("Nice job being average. Yes that's mean.");
 			}
 			else if (gradeInClass == 13) {
 				System.out.println("Your GPA is the least of your problems.");
 				System.out.println("Go study instead.");
 				System.exit(0);
+			} else if (gradeInClass < 1 || gradeInClass > 13){
+				System.out.println("Don't be a jokester, put in a number between 1 and 13.");
+				i--;
 			}
-			double defaultWeight = 4.33333;
-			double actualWeight;
-			if (courseType == 2) {
-				defaultWeight = defaultWeight + 0.66667;
-			}
-			else if (courseType == 3) {
-				defaultWeight = defaultWeight + 1.00;
-			}
-			actualWeight = Math.round((-(0.33333) * (gradeInClass - 1) + defaultWeight) * 100.0) / 100.0;
+				
+			double actualWeight = Math.round((-(0.33333) * (gradeInClass - 1) + (10.0/3 + (7.0*courseType)/6 - (courseType*courseType)/6.0)) * 100.0) / 100.0;
 			sumCalculation = sumCalculation + creditsForClass * actualWeight;
 			totalCredits = totalCredits + creditsForClass;
 		}
@@ -55,8 +47,7 @@ public class BullyCalculator {
 	
 	public static void main (String[] args) {
 		System.out.println("Welcome to the BRHS GPA Calculator!");
-		BullyCalculator calculator = new BullyCalculator();
-		calculator.calculateGPA();
+		BullyCalculator.calculateGPA();
 	}
 	
 }
