@@ -3,25 +3,21 @@ import java.util.Scanner;
 
 public class BullyCalculator {
 
-	Scanner keyboard = new Scanner(System.in);
-	double creditsForClass;
-	int courseType;
-	int numberOfClasses;
-	int gradeInClass;
-	double sumCalculation;
-	double totalCredits;
-	double GPA;
-	double defaultWeight;
-	double actualWeight;
-	boolean isValid;
-	int answer1;
-	double answer2;
+	static Scanner keyboard = new Scanner(System.in);
+	static double creditsForClass;
+	static int courseType;
+	static int numberOfClasses;
+	static int gradeInClass;
+	static double sumCalculation;
+	static double totalCredits;
+	static double GPA;
+	static double defaultWeight;
+	static double actualWeight;
+	static boolean isValid;
+	static int answer1;
+	static double answer2;
 	
-	public BullyCalculator() {
-		
-	}
-	
-	public void validateInput(String startingQuestion, String errorMessage, String errorMessageTwo, String validDataType, double lowerBound, double upperBound) {
+	public static void validateInput(String startingQuestion, String errorMessage, String errorMessageTwo, String validDataType, double lowerBound, double upperBound) {
 		do {
 			System.out.print(startingQuestion + "\n> ");
 			if (validDataType.equals("int")) {
@@ -57,8 +53,8 @@ public class BullyCalculator {
 		} while (!isValid);
 	}
 	
-	public void calculateGPA() {
-		validateInput("How many classes are you taking?", "Don't try to outsmart me, that can't be right.", "Invalid input. Put in a number.", "int", 5 , 8 );
+	public static void calculateGPA() {
+		validateInput("How many classes are you taking?", "No one outpizzas the hut! Try again.", "Invalid input. Put in a number.", "int", 5 , 8 );
 		numberOfClasses = answer1;
 		for (int i = 1; i <= numberOfClasses; i++) {
 			System.out.println("Class " + i + ":");
@@ -76,14 +72,7 @@ public class BullyCalculator {
 				System.out.println("Go study instead.");
 				System.exit(0);
 			}
-			defaultWeight = 4.33333;
-			if (courseType == 2) {
-				defaultWeight = defaultWeight + 0.66667;
-			}
-			else if (courseType == 3) {
-				defaultWeight = defaultWeight + 1.00;
-			}
-			actualWeight = Math.round((-(0.33333) * (gradeInClass - 1) + defaultWeight) * 100.0) / 100.0;
+			double actualWeight = Math.round((-(0.33333) * (gradeInClass - 1) + (10.0/3 + (7.0*courseType)/6 - (courseType*courseType)/6.0)) * 100.0) / 100.0;
 			sumCalculation = sumCalculation + creditsForClass * actualWeight;
 			totalCredits = totalCredits + creditsForClass;
 		}
@@ -93,8 +82,7 @@ public class BullyCalculator {
 	
 	public static void main (String[] args) {
 		System.out.println("Welcome to the BRHS GPA Calculator!");
-		BullyCalculator calculator = new BullyCalculator();
-		calculator.calculateGPA();
+		BullyCalculator.calculateGPA();
 	}
 	
 }
