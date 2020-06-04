@@ -20,8 +20,7 @@ public class BullyCalculator {
 	public static void validateInput(String startingQuestion, String errorMessage, String errorMessageTwo, String validDataType, double lowerBound, double upperBound) {
 		do {
 			System.out.print(startingQuestion + "\n> ");
-			if (validDataType.equals("int")) {
-				if (keyboard.hasNextInt()) {
+				if (validDataType.equals("int") && keyboard.hasNextInt()) {
 					answer1 = keyboard.nextInt();
 					isValid = true;
 					if (!(answer1 >= lowerBound && answer1 <= upperBound)) {
@@ -34,9 +33,8 @@ public class BullyCalculator {
 					isValid = false;
 					keyboard.next();
 				}
-			}
-			else if (validDataType.equals("double")) {
-				if (keyboard.hasNextDouble()) {
+        
+				if (validDataType.equals("double") && keyboard.hasNextDouble()) {
 					answer2 = keyboard.nextDouble();
 					isValid = true;
 					if (!(answer2 >= lowerBound && answer2 <= upperBound)) {
@@ -49,7 +47,7 @@ public class BullyCalculator {
 					isValid = false;
 					keyboard.next();
 				}
-			}
+			
 		} while (!isValid);
 	}
 	
