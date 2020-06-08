@@ -101,11 +101,7 @@ public class GpaCalculator{
             }
 
         }
-
-        for(int i=0; i<totalPoints.length; i++){
-            totalGradePoints+=totalPoints[i];
-        }
-        return totalGradePoints;
+        return DoubleStream.of(totalPoints).sum();
     }
 
 
